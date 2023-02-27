@@ -158,12 +158,17 @@ impeach %>%
 
 ```{r}
 
-  
+# I'm looking at the number of democrats for impeachment and whether or not they 
+# flipped in 2018. I filtered for those in favor of impeachment and counted those that 
+# flipped. 
+
+impeach %>% 
+  filter(for_impeachment == "YES") %>% 
+  group_by(flip_2018) %>% 
+  count(flip_2018, name = "count")
 
 
-
-
-
+# 178 did not flip and 31 did. 
 
 
 ```
@@ -174,11 +179,12 @@ Use the mutate() function to create two new columns: one that extracts the year 
 
 ```{r}
 
+# I used the mutate function to aaddd the year and month announced columns. I saved the 
+# columns to the data. 
   
-
-
-
-
+impeach <- impeach %>% 
+  mutate(year_announced = year(date_announced),
+         month_announced = month(date_announced))
 
 
 
@@ -188,12 +194,14 @@ Use the mutate() function to create two new columns: one that extracts the year 
 
 ```{r}
 
+# I grouped by the month_announced column and counted up how many supported each month.
   
+impeach %>% 
+  group_by(month_announced) %>% 
+  summarise(count_that_month = n())
 
 
-
-
-
+# The most people announced in September. 26 are N/A because they were against impeachment. 
 
 
 ```
