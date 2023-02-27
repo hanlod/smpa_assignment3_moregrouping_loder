@@ -1,6 +1,6 @@
 ---
 title: "R Assignment #3"
-author: "Put Your Name Here"
+author: "Hannah Loder"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
@@ -44,9 +44,13 @@ Write your code using grouping in the chunks below to help answer the following 
 
 ```{r}
 
+# I grouped by the for_impeachment column and totaled up the amounts under the name "count."
 
+impeach %>% 
+  group_by(for_impeachment) %>% 
+  summarise(count = n())
 
-
+#There were 209 for impeachment and 26 against. 
 
 
 ```
@@ -57,12 +61,15 @@ You'll want to ensure you do the grouping on both columns together, e.g. `group_
 
 ```{r}
 
+# I grouped by both columns, for_impeachment and gdp_above_national, and I totaled them 
+# using the summarise function.
+
+impeach %>% 
+  group_by(for_impeachment, gdp_above_national) %>% 
+  summarise(count = n())
 
 
-
-
-
-
+# "YES" and "ABOVE" are the most common responses, with "NO" and "ABOVE" being the least common.
 
 
 
